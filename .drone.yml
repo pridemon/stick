@@ -11,9 +11,10 @@ pipeline:
 
   publish-docker:
     image: plugins/docker
+    repo: ontrif/stick
+    tag:
+      - latest
+      - ${DRONE_TAG}
     when:
       event: tag
-    tag:
-      - ${DRONE_TAG}
-    repo: registry.wachanga.com/wachanga/sync-auth
-    registry: registry.wachanga.com
+    secrets: [ docker_username, docker_password ]
