@@ -1,0 +1,19 @@
+# vim: ts=2:sts=2:sw=2:expandtab:smarttab:
+
+pipeline:
+  build:
+    image: andrexus/golang-dep
+    commands:
+      - export GOPATH=$(pwd)
+      - cd src/stick
+      - dep ensure -vendor-only
+      - go build
+
+  publish-docker:
+    image: plugins/docker
+    when:
+      event: tag
+    tag:
+      - ${DRONE_TAG}
+    repo: registry.wachanga.com/wachanga/sync-auth
+    registry: registry.wachanga.com
