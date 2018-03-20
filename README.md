@@ -22,3 +22,4 @@ Then send any valid json to `8080` port:
 ```bash
 curl -XPOST localhost:8080/ -d '{"test":"me"}'
 ```
+Note: `@timestamp` field will be added automatically (UTC time when message arrived to server).
