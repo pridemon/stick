@@ -20,10 +20,9 @@ type Worker struct {
 type Message map[string]interface{}
 
 func (w *Worker) Start() {
-	for {
-		// TODO: config
-		tick := time.Tick(w.CommitInterval)
+	tick := time.Tick(w.CommitInterval)
 
+	for {
 		select {
 		case line, ok := <-w.queue:
 			if !ok {
